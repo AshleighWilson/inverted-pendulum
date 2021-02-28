@@ -12,6 +12,9 @@ AMS_5600 ams5600;
 #define BRAKE_PIN 9
 #define CURFB_PIN 0
 
+unsigned long startTime;
+unsigned long currentTime;
+
 void setup() {
     Serial.begin(115200);
     pinMode(DIR_PIN, OUTPUT);
@@ -37,16 +40,20 @@ void setup() {
     }
     Serial.println("Calibrating pendulum.. ");
     calibrate_pendulum();
+
+    startTime = millis();
+    Serial.println("RDY");
 }
 
 void loop() {
     /* Raw data reports 0 - 4095 segments, which is 0.087 of a degree. */
     float angle = ams5600.getRawAngle() * 0.087;
     float scaled_angle = (ams5600.getScaledAngle() * 0.087) - 180;
-    Serial.print("Raw Angle: ");
-    Serial.print(angle);
-    Serial.print(" Scaled Angle: ");
-    Serial.println(scaled_angle);
+
+    /* Send the current time and the angle via serial. */
+    currentTime = millis() - startTime;
+    Serial.println((String) currentTime + " " + scaled_angle);
+    delay(10);
 }
 
 void calibrate_pendulum() {
