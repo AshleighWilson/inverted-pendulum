@@ -84,7 +84,7 @@ win.setWindowTitle('Pendulum Angle')
 plot_angle = win.addPlot()
 plot_angle.showGrid(x=True, y=True)
 # plot_angle.setXRange(5,20, padding=0)
-plot_angle.setYRange(-10,265, padding=0)
+plot_angle.setYRange(-190, 190, padding=0)
 plot_angle_x = np.zeros(500)
 plot_angle_y = np.zeros(500)
 plot_angle_curve = plot_angle.plot(
