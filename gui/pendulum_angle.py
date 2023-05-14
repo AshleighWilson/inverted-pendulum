@@ -72,7 +72,7 @@ class ArduinoSerial:
 
 
 # Connect to the Arduino.
-arduino = ArduinoSerial('/dev/tty.usbmodem14601', 115200)
+arduino = ArduinoSerial('/dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_75735323230351516152-if00', 115200)
 
 # Always start by initializing Qt (only once per application).
 app = QtGui.QApplication([])
